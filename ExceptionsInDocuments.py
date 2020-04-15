@@ -71,11 +71,11 @@ def our_input(command):
 
 def all_owners():
     owners = []
-    try:
-        for elements in documents:
+    for elements in documents:
+        try:
             owners.append(elements["name"])
-    except KeyError:
-        print(f'У документа {elements["number"]} отсутствует владелец.')
+        except KeyError:
+            print(f'У документа {elements["number"]} отсутствует владелец.')
     print(owners)
 
 

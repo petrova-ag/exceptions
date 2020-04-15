@@ -10,22 +10,24 @@ def actions(arithmetic_operation, num1, num2):
         multiplication = num1 * num2
         print(multiplication)
     elif arithmetic_operation == '/':
-        division = num1 / num2
-        print(division)
+        try:
+            division = num1 / num2
+            print(division)
+        except ZeroDivisionError:
+            print('На ноль делить нельзя!')
 
 
 def define_exceptions(operation, arithmetic_operation, num1, num2):
-
     assert len(operation) == 3, 'Вы ввели больше аргументов, чем нужно.'
     try:
         num1 = int(num1)
         num2 = int(num2)
-        division = num1 / num2
-        actions(arithmetic_operation, num1, num2)
+        if num1 < 0 or num2 < 0:
+            print('Можно вводить только положительные числа.')
+        else:
+            actions(arithmetic_operation, num1, num2)
     except ValueError:
         print('Невозможно проводить арифметические операции со строками.')
-    except ZeroDivisionError:
-        print('На ноль делить нельзя!')
 
 
 def our_input():
@@ -36,10 +38,9 @@ def our_input():
     try:
         num1 = operation[1]
         num2 = operation[2]
+        define_exceptions(operation, arithmetic_operation, num1, num2)
     except IndexError:
         print('Вы ввели недостаточно аргументов.')
-    try:
-        define_exceptions(operation, arithmetic_operation, num1, num2)
     except UnboundLocalError:
         print('Вы не ввели второй аргумент.')
 
